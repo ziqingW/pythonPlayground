@@ -1,3 +1,3 @@
 # pythonPlayground
 
-python snippets for fun
+All kinds of Python snippets for fun
