@@ -1,13 +1,12 @@
 def mergeSorting(arr):
     if len(arr) <= 1:
         return arr
-    else:
-        median = len(arr) // 2
-        left = arr[:median]
-        right = arr[median:]
-        dividedLeft = mergeSorting(left)
-        dividedRight = mergeSorting(right)
-        return sortTwo(dividedLeft, dividedRight)
+    median = len(arr) // 2
+    left = arr[:median]
+    right = arr[median:]
+    dividedLeft = mergeSorting(left)
+    dividedRight = mergeSorting(right)
+    return sortTwo(dividedLeft, dividedRight)
         
 def sortTwo(left, right):
     result = []
