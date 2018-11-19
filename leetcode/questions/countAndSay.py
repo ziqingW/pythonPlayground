@@ -43,3 +43,30 @@ class Solution:
             if counter_total < len(previous):
                 result += str(count) + char
             return result
+# another method with iterative
+class Solution:
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        dp = "1"
+        if n > 1:
+            for i in range(1,n):
+                curr = dp[0]
+                number = 1
+                result = ""
+                if len(dp) > 1:
+                    for i in range(1, len(dp)):
+                        if dp[i-1] == dp[i]:
+                            number += 1
+                        else:
+                            result += str(number) + curr
+                            number = 1
+                            curr = dp[i]
+                result += str(number) + curr
+                dp = result
+        return dp
+                        
+        
+            

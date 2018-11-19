@@ -28,3 +28,46 @@ class Solution:
             n_next.next = n_tail
             n_tail = n_next
         return n_tail
+        
+# another method
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        # stack = []
+        # if not head:
+        #     return None
+        # while head:
+        #     stack.append(head.val)
+        #     head = head.next
+        # newHead = ListNode(stack.pop())
+        # curr = newHead
+        # while len(stack) > 0:
+        #     curr.next = ListNode(stack.pop())
+        #     curr = curr.next
+        # return newHead
+        if not head:
+            return None
+        if head.next == None:
+            return head
+        slow = head
+        fast = head.next
+        tNext = fast.next
+        fast.next = slow
+        slow.next = None
+        while tNext:
+            slow = fast
+            fast = tNext
+            tNext = fast.next
+            fast.next = slow
+        return fast
+        
+        

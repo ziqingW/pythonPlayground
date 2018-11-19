@@ -53,3 +53,41 @@ class Solution:
             fast = fast.next
         slow.next = slow.next.next
         return head
+
+# my own method, very fast, O(N)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        if not head:
+            return None
+        if head.next == None:
+            return None
+        curr = head
+        if n == 1:
+            while True:
+                if curr.next.next == None:
+                    curr.next = None
+                    return head
+                else:
+                    curr = curr.next
+        forward = curr
+        while True:
+            for i in range(n):
+                forward = forward.next
+            if forward == None:
+                curr.val = curr.next.val
+                curr.next = curr.next.next
+                return head
+            else:
+                curr = curr.next
+                forward = curr

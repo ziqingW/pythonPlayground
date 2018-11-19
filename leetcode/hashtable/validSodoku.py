@@ -35,4 +35,54 @@ class Solution:
                     return False
                 hashmapBlock[char] = i
         return True
+
+
+# another method
+class Solution:
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        def helper(nums):
+            counter = {}
+            for num in nums:
+                if num != ".":
+                    try:
+                        num = int(num)
+                    except:
+                        return False
+                    else:
+                        if 1 <= num <= 9:
+                            if num not in counter:
+                                counter[num] = True
+                            else:
+                                return False
+                        else:
+                            return False
+            return True
+        
+        for row in board:
+            if not helper(row):
+                return False
+        columns = [[row[i] for row in board] for i in range(9)]
+        for column in columns:
+            if not helper(column):
+                return False
+        subboxes = [board[i][j:j+3]+board[i+1][j:j+3]+board[i+2][j:j+3] for j in range(0,7,3) for i in range(0,7,3)]
+        for subbox in subboxes:
+            if not helper(subbox):
+                return False
+        return True
+        # for k in range(9):
+        #     if not helper(board[k]):
+        #         return False
+        #     if not helper([row[k] for row in board]):
+        #         return False
+        #     i = k // 3
+        #     j = k % 3
+        #     subbox = board[i*3][j*3:j*3+3]+board[i*3+1][j*3:j*3+3]+board[i*3+2][j*3:j*3+3]
+        #     if not helper(subbox):
+        #         return False
+        # return True
             
