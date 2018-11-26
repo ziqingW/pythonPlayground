@@ -27,3 +27,23 @@ class Solution:
             for num in nums2:
                 nums1.append(num)
             nums1.sort()
+            
+#  another method, faster than the previous one
+        copy = nums1[:m]
+        i = j = k = 0
+        while i < m and j < n:
+            if copy[i] < nums2[j]:
+                nums1[k] = copy[i]
+                i += 1
+            else:
+                nums1[k] = nums2[j]
+                j += 1
+            k += 1
+        if i == m and j != n:
+            for x in range(j, n):
+                nums1[k] = nums2[x]
+                k += 1
+        if j == n and i != m:
+            for y in range(i, m):
+                nums1[k] = copy[y]
+                k += 1

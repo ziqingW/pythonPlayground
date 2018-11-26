@@ -86,3 +86,37 @@ class Solution:
                 else:
                     return False
         return len(result) == 0
+        
+# another method, much faster
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        a = b = c = 0
+        last = []
+        pairs = {"(": ")", "[": "]", "{": "}"}
+        for char in s:
+            if char in pairs:
+                if char == "(":
+                    a += 1
+                elif char == "[":
+                    b += 1
+                elif char == "{":
+                    c += 1
+                last.append(char)
+            else:
+                if not last:
+                    return False
+                if char != pairs[last[-1]]:
+                    return False
+                else:
+                    if char == ")":
+                        a -= 1
+                    elif char == "]":
+                        b -= 1
+                    else:
+                        c -= 1
+                    last.pop()
+        return a == 0 and b == 0 and c == 0
